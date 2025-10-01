@@ -11,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // shadcn tokens (nodig voor bg-background, border-border, etc.)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -44,6 +45,8 @@ const config: Config = {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
+
+        // jouw extra kleuren
         brand: { DEFAULT: "#2563EB", hover: "#1D4ED8" },
         study: "#16A34A",
         exam: "#DC2626",
