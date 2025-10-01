@@ -25,8 +25,8 @@ const config: Config = {
         soft: "0 8px 20px -8px rgba(0,0,0,0.12)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "SFMono-Regular", "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "SFMono-Regular", "monospace"],
       },
     },
   },
