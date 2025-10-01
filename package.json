@@ -1,0 +1,35 @@
+{
+  "name": "slimme-ai-agenda",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check:text-only": "node -e \"const { execSync, spawnSync } = require('node:child_process'); const ensureFileCmd = spawnSync('which', ['file'], { encoding: 'utf8' }); if (ensureFileCmd.status !== 0) { console.error('file command is required for this check.'); process.exit(ensureFileCmd.status ?? 1); } const output = execSync('git diff --cached --name-only', { encoding: 'utf8' }).trim(); if (output.length === 0) { console.log('No staged files. OK'); process.exit(0); } const files = output.split(/\\r?\\n/).filter(Boolean); const bad = []; for (const file of files) { const result = spawnSync('file', ['--brief', '--mime', file], { encoding: 'utf8' }); if (result.status !== 0) { console.error(result.stderr || result.stdout || 'file command failed.'); process.exit(result.status ?? 1); } if (!/(charset=(?:us-ascii|utf-8)|text)/i.test(result.stdout)) { bad.push(file); } } if (bad.length) { console.error('Binary files detected in staging:\\n' + bad.join('\\n')); process.exit(1); } console.log('OK');\""
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.453.0",
+    "next": "14.2.13",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^2.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.13",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.13",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.6.3"
+  }
+}
