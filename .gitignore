@@ -1,0 +1,27 @@
+# Node and build output
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+
+# Test artifacts
+coverage/
+playwright-report/
+playwright/.cache/
+**/test-results/
+**/.playwright/
+
+# Logs
+*.log
+
+# Environment files
+.env*
+!.env.example
+
+# System files
+.DS_Store
+
+# Archives and local databases
+*.zip
+*.sqlite
