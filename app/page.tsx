@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { CalendarCheck, Sparkles, Upload } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 const actions = [
@@ -36,10 +36,20 @@ export default function Home() {
         Deze MVP richt zich op een betrouwbare basis: CSV-import voor je lesrooster, handmatige events, en een
         AI-gestuurde planner die rekening houdt met je grenzen.
       </p>
+
+      {/* Knoppenrij */}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Button className="shadow-soft">Projectstructuur bekijken</Button>
         <Button variant="outline">Volgende stap voorbereiden</Button>
+        <Link
+          href="/calendar"
+          className="inline-block rounded-2xl px-4 py-2 bg-brand text-white hover:bg-brand-hover"
+        >
+          Open agenda
+        </Link>
       </div>
+
+      {/* Drie kaarten */}
       <div className="mt-12 grid w-full max-w-5xl gap-6 md:grid-cols-3">
         {actions.map((action) => (
           <article
@@ -49,7 +59,9 @@ export default function Home() {
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-brand">
               <action.icon className="h-6 w-6" />
             </div>
-            <h2 className="text-xl font-semibold text-slate-900">{action.title}</h2>
+            <h2 className="text-xl font-semibold text-slate-900">
+              {action.title}
+            </h2>
             <p className="text-sm text-slate-600">{action.description}</p>
           </article>
         ))}

@@ -16,15 +16,14 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "Slimme AI Agenda",
-  description:
-    "Plan lessen en studieblokken slim rond je leven met de Slimme AI Agenda.",
+  description: "Plan lessen en studieblokken slim rond je leven.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="nl" suppressHydrationWarning>
       <body className={`${inter.variable} ${robotoMono.variable} font-sans`}>

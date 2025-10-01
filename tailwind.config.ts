@@ -46,7 +46,7 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
 
-        // jouw extra kleuren
+        // custom kleuren voor jouw app
         brand: { DEFAULT: "#2563EB", hover: "#1D4ED8" },
         study: "#16A34A",
         exam: "#DC2626",
