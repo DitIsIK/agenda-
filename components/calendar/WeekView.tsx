@@ -14,6 +14,12 @@ import { useEvents } from "./EventProvider";
 
 const locales = { nl };
 
+import { Calendar, Views, dateFnsLocalizer } from "react-big-calendar";
+import { format, getDay, parse, startOfWeek } from "date-fns";
+import { nl } from "date-fns/locale";
+
+const locales = { nl };
+
 const localizer = dateFnsLocalizer({
   format,
   parse,
@@ -22,21 +28,41 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const DragAndDropCalendar = withDragAndDrop(Calendar);
-
-const colorClasses: Record<string, string> = {
-  lesson: "bg-lesson",
-  study: "bg-study",
-  exam: "bg-exam",
-  task: "bg-task",
-};
+interface CalendarEvent {
+  title: string;
+  start: Date;
+  end: Date;
+  type: "lesson" | "study" | "exam" | "task" | string;
+}
 
 export default function WeekView() {
-  const { events, conflicts, updateEventTime } = useEvents();
+  const events: CalendarEvent[] = [
+    {
+      title: "Communicatie 101 (les)",
+      start: new Date(),
+      end: new Date(Date.now() + 60 * 60 * 1000),
+      type: "lesson",
+    },
+    {
+      title: "Studieblok Marketing",
+      start: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      end: new Date(Date.now() + 25 * 60 * 60 * 1000),
+      type: "study",
+    },
+  ];
 
-  const conflictEventIds = useMemo(() => new Set(conflicts.flatMap((conflict) => [conflict.eventId, conflict.conflictingWithId])), [
-    conflicts,
-  ]);
+  const eventPropGetter = (event: CalendarEvent) => {
+    const colorClasses: Record<string, string> = {
+      lesson: "bg-lesson",
+      study: "bg-study",
+      exam: "bg-exam",
+      task: "bg-task",
+    };
+
+    return {
+      className: `${colorClasses[event.type] ?? "bg-task"} !text-white !border-none`,
+    };
+  };
 
   return (
     <div className="rounded-2xl bg-card p-2 shadow-soft">
