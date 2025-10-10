@@ -5,8 +5,11 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 
 import { useMemo, useState } from "react";
+import type { ComponentType } from "react";
+import type { CalendarProps } from "react-big-calendar";
 import { Calendar, Views, dateFnsLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+import type { EventInteractionArgs } from "react-big-calendar/lib/addons/dragAndDrop";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { nl } from "date-fns/locale";
 
@@ -26,7 +29,9 @@ type RBCEvt = {
   type?: "lesson" | "study" | "exam" | "task";
 };
 
-const DnDCalendar = withDragAndDrop<RBCEvt, object>(Calendar as any);
+const DnDCalendar = withDragAndDrop<RBCEvt, object>(
+  Calendar as unknown as ComponentType<CalendarProps<RBCEvt, object>>
+);
 
 export default function WeekView() {
   // demo events zodat je wat ziet
@@ -62,15 +67,11 @@ export default function WeekView() {
   };
 
   // simpele drag handlers (optioneel)
-  const onEventDrop = ({ event, start, end }: any) => {
-    setEvents((prev) =>
-      prev.map((e) => (e === event ? { ...e, start, end } : e))
-    );
+  const onEventDrop = ({ event, start, end }: EventInteractionArgs<RBCEvt>) => {
+    setEvents((prev) => prev.map((current) => (current === event ? { ...current, start: start as Date, end: end as Date } : current)));
   };
-  const onEventResize = ({ event, start, end }: any) => {
-    setEvents((prev) =>
-      prev.map((e) => (e === event ? { ...e, start, end } : e))
-    );
+  const onEventResize = ({ event, start, end }: EventInteractionArgs<RBCEvt>) => {
+    setEvents((prev) => prev.map((current) => (current === event ? { ...current, start: start as Date, end: end as Date } : current)));
   };
 
   return (
