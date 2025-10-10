@@ -51,25 +51,17 @@ export default function CalendarPage() {
   const calendarEvents = useMemo(() => events.map((event) => ({ ...event })), [events]);
 
   const eventPropGetter = (event: CalendarEvent) => {
-    const colorMap: Record<CalendarEvent["type"], string> = {
-      lesson: "#2563EB",
-      study: "#16A34A",
-      task: "#71717A",
-      exam: "#DC2626",
+    const backgroundMap: Record<string, string> = {
+      lesson: "bg-lesson",
+      study: "bg-study",
+      task: "bg-task",
+      exam: "bg-exam",
     };
 
-    const backgroundColor = colorMap[event.type] ?? "#1F2937"; // fallback = slate-800
+    const backgroundClass = backgroundMap[event.type] ?? "bg-slate-500";
 
     return {
-      className: "!border-0 text-sm font-medium",
-      style: {
-        backgroundColor,
-        borderRadius: "0.75rem",
-        color: "#FFFFFF",
-        boxShadow: "0 8px 20px -8px rgba(0,0,0,0.2)",
-        paddingBlock: "6px",
-        paddingInline: "10px",
-      },
+      className: `${backgroundClass} !border-none !text-white rounded-md`,
     };
   };
 
