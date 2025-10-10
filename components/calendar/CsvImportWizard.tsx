@@ -133,8 +133,8 @@ export function CsvImportWizard() {
       <footer className="mt-4 space-y-2 text-xs text-slate-500">
         <p>Voorbeeldregel:</p>
         <pre className="overflow-x-auto rounded-xl bg-slate-900 p-3 font-mono text-[11px] text-slate-100">
-title,start,end,type,location,rrule
-Marketing College,"2024-09-02T10:00:00","2024-09-02T12:00:00",lesson,Aula,"FREQ=WEEKLY;BYDAY=MO;COUNT=10"
+          {`title,start,end,type,location,rrule
+Marketing College,"2024-09-02T10:00:00","2024-09-02T12:00:00",lesson,Aula,"FREQ=WEEKLY;BYDAY=MO;COUNT=10"`}
         </pre>
       </footer>
     </section>

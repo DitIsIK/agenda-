@@ -143,23 +143,20 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
 
   const clearWarnings = () => setWarnings([]);
 
-  const value = useMemo(
-    () => ({
-      events,
-      conflicts,
-      warnings,
-      lastPlan,
-      addEvent,
-      importEvents,
-      removeEvent,
-      toggleLock,
-      updateEventTime,
-      planStudyRequest,
-      resolveCurrentConflicts,
-      clearWarnings,
-    }),
-    [events, conflicts, warnings, lastPlan]
-  );
+  const value: EventContextValue = {
+    events,
+    conflicts,
+    warnings,
+    lastPlan,
+    addEvent,
+    importEvents,
+    removeEvent,
+    toggleLock,
+    updateEventTime,
+    planStudyRequest,
+    resolveCurrentConflicts,
+    clearWarnings,
+  };
 
   return <EventContext.Provider value={value}>{children}</EventContext.Provider>;
 }
